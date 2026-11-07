@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi Amorcito</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  padding:24px 12px;
+  font-family:'Poppins',sans-serif;
+  overflow-x:hidden;
+}
+.papel{
+  position:relative;
+  width:min(94vw,440px);
+  padding:62px 26px 78px 56px;
+  background:
+    linear-gradient(90deg,transparent 40px,#e7a1ae 40px,#e7a1ae 41.5px,transparent 41.5px),
+    repeating-linear-gradient(#fff 0,#fff 25px,#d3e8ee 25px,#d3e8ee 26px);
+  border:1px solid #dcdcdc;
+  box-shadow:0 6px 24px rgba(0,0,0,.12);
+  z-index:2;
+}
+h1{
+  font-family:'Dancing Script',cursive;
+  font-size:2rem;
+  color:#2b2b2b;
+  line-height:52px;
+  margin-bottom:0;
+}
+p{
+  font-size:.92rem;
+  line-height:26px;
+  color:#333;
+  text-align:justify;
+  margin-bottom:26px;
+}
+p.fuerte{font-weight:600;color:#1f1f1f}
+.deco{position:absolute;pointer-events:none;z-index:3}
+.btn{
+  position:absolute;left:50%;bottom:22px;transform:translateX(-50%);
+  z-index:4;
+  background:#f0527e;color:#fff;border:0;
+  padding:9px 22px;border-radius:4px;
+  font-family:inherit;font-size:.9rem;cursor:pointer;text-decoration:none;display:inline-block;
+  box-shadow:0 4px 10px rgba(240,82,126,.4);
+  transition:transform .15s;
+}
+.btn:active{transform:translateX(-50%) scale(.95)}
+.cae{position:fixed;top:-60px;z-index:1;pointer-events:none;animation:caer linear forwards}
+@keyframes caer{
+  to{transform:translateY(115vh) rotate(var(--r,40deg))}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="h" viewBox="0 0 100 92">
+      <path d="M50 88C10 58-2 30 20 13 35 2 48 11 50 24 52 11 65 2 80 13 102 30 90 58 50 88Z"/>
+    </symbol>
+    <pattern id="rayas" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
+      <rect width="5" height="5" fill="#f08a9f"/>
+      <line x1="0" y1="0" x2="0" y2="5" stroke="#d64a69" stroke-width="2.2"/>
+    </pattern>
+  </defs>
+</svg>
+
+<main class="papel" id="papel">
+
+  <!-- corazones de arriba -->
+  <svg class="deco" style="left:20px;top:12px;width:70px" viewBox="0 0 100 92" fill="url(#rayas)" stroke="#c9395a" stroke-width="2"><use href="#h"/></svg>
+  <svg class="deco" style="left:122px;top:6px;width:64px" viewBox="0 0 100 92" fill="url(#rayas)" stroke="#c9395a" stroke-width="2"><use href="#h"/></svg>
+  <svg class="deco" style="left:226px;top:10px;width:66px" viewBox="0 0 100 92" fill="url(#rayas)" stroke="#c9395a" stroke-width="2"><use href="#h"/></svg>
+  <svg class="deco" style="right:22px;top:4px;width:74px" viewBox="0 0 100 92" fill="url(#rayas)" stroke="#c9395a" stroke-width="2"><use href="#h"/></svg>
+  <svg class="deco" style="left:8px;top:48px;width:30px" viewBox="0 0 100 92" fill="none" stroke="#b0304f" stroke-width="3"><use href="#h"/></svg>
+  <svg class="deco" style="left:170px;top:56px;width:34px" viewBox="0 0 100 92" fill="none" stroke="#b0304f" stroke-width="3"><use href="#h"/></svg>
+  <svg class="deco" style="right:72px;top:10px;width:26px" viewBox="0 0 100 92" fill="none" stroke="#b0304f" stroke-width="3"><use href="#h"/></svg>
+
+  <h1>Mi Amorcito</h1>
+
+  <p>Mi cielo hermoso,</p>
+  <p class="fuerte">cada día contigo es mi lugar favorito 💘</p>
+  <p>Tu forma de ser ilumina mi corazón y hace que todo a mi alrededor tenga más sentido.</p>
+  <p>Te pienso en cada momento, y aunque a veces estemos lejos, mi amor por ti siempre te encuentra.</p>
+  <p>Gracias por existir, por tu ternura y por hacer de mi vida un sueño bonito 💗</p>
+  <p>Hoy, mañana y siempre, te voy a amar con todo mi corazón 💖</p>
+
+  <!-- corazones de abajo -->
+  <svg class="deco" style="left:18px;bottom:20px;width:64px" viewBox="0 0 100 92" fill="url(#rayas)" stroke="#c9395a" stroke-width="2"><use href="#h"/></svg>
+  <svg class="deco" style="left:122px;bottom:6px;width:68px" viewBox="0 0 100 92" fill="url(#rayas)" stroke="#c9395a" stroke-width="2"><use href="#h"/></svg>
+  <svg class="deco" style="right:90px;bottom:10px;width:66px" viewBox="0 0 100 92" fill="url(#rayas)" stroke="#c9395a" stroke-width="2"><use href="#h"/></svg>
+  <svg class="deco" style="right:16px;bottom:28px;width:64px" viewBox="0 0 100 92" fill="url(#rayas)" stroke="#c9395a" stroke-width="2"><use href="#h"/></svg>
+  <svg class="deco" style="left:86px;bottom:4px;width:30px" viewBox="0 0 100 92" fill="none" stroke="#b0304f" stroke-width="3"><use href="#h"/></svg>
+  <svg class="deco" style="left:210px;bottom:34px;width:40px" viewBox="0 0 100 92" fill="none" stroke="#b0304f" stroke-width="3"><use href="#h"/></svg>
+
+  <a class="btn" href="index.html">Solo eres tú (volver)!</a>
+</main>
+
+<script>
+const cor = ['💗','💖','💕','❤️','💓','🩷'];
+function lluvia(n, rapido){
+  for(let i=0;i<n;i++){
+    const s = document.createElement('span');
+    s.className = 'cae';
+    s.textContent = cor[Math.floor(Math.random()*cor.length)];
+    s.style.left = Math.random()*100 + 'vw';
+    s.style.fontSize = (12 + Math.random()*24) + 'px';
+    s.style.opacity = .5 + Math.random()*.5;
+    s.style.setProperty('--r', (Math.random()*160-80) + 'deg');
+    s.style.animationDuration = (rapido ? 2.5 : 6) + Math.random()*5 + 's';
+    document.body.appendChild(s);
+    s.addEventListener('animationend', () => s.remove());
+  }
+}
+lluvia(60);
+setInterval(() => lluvia(6), 700);
+</script>
+</body>
+</html>

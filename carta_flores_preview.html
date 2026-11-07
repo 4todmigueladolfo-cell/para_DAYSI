@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para ti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rosa: #e88ca0;
+  --rosa-fuerte: #d46a83;
+  --crema: #fff6f2;
+  --texto: #5a3d42;
+  --verde: #7a9b76;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: linear-gradient(160deg,#ffe8ee 0%, #fff6f2 45%, #ffe0e9 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  overflow-x:hidden;
+  position:relative;
+}
+
+.escena{
+  position:relative;
+  width:100%;
+  max-width:480px;
+  z-index:1;
+}
+
+.pagina{
+  background:var(--crema);
+  border-radius:26px;
+  padding:40px 30px 34px;
+  box-shadow: 0 20px 45px rgba(180,90,110,0.25);
+  text-align:center;
+  position:relative;
+  display:none;
+  animation: aparecer 0.6s ease;
+}
+.pagina.activa{ display:block; }
+@keyframes aparecer{
+  from{opacity:0; transform:translateY(18px) scale(0.98);}
+  to{opacity:1; transform:translateY(0) scale(1);}
+}
+
+.ramo{
+  margin-bottom:6px;
+  display:flex;
+  justify-content:center;
+}
+.flor-svg{
+  width:110px;
+  height:140px;
+  filter: drop-shadow(0 8px 12px rgba(180,90,110,0.3));
+  animation: mecer 4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+@keyframes mecer{
+  0%, 100%{ transform: rotate(-2deg); }
+  50%{ transform: rotate(2deg); }
+}
+.flor-emoji{
+  display:inline-block;
+  font-size:5.5rem;
+  line-height:1;
+  filter: drop-shadow(0 8px 12px rgba(180,90,110,0.3));
+  animation: mecer 4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+.flor-emoji-final{
+  display:inline-block;
+  font-size:3.2rem;
+  line-height:1;
+  filter: drop-shadow(0 8px 12px rgba(180,90,110,0.3));
+  animation: mecer 4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+h1.titulo{
+  font-size:2rem;
+  color:var(--rosa-fuerte);
+  margin:10px 0 22px;
+  font-style:italic;
+  font-weight:700;
+}
+
+.poema{
+  font-size:1.15rem;
+  color:var(--texto);
+  line-height:1.9;
+  margin:0 0 30px;
+  white-space:pre-line;
+}
+
+.btn{
+  border:none;
+  outline:none;
+  cursor:pointer;
+  font-family:inherit;
+  font-size:1rem;
+  padding:14px 34px;
+  border-radius:40px;
+  background: linear-gradient(135deg, var(--rosa), var(--rosa-fuerte));
+  color:#fff;
+  font-weight:600;
+  letter-spacing:0.5px;
+  box-shadow:0 10px 20px rgba(212,106,131,0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 24px rgba(212,106,131,0.45);
+}
+.btn:active{ transform:translateY(0px) scale(0.98); }
+
+.grupo-btns{
+  display:flex;
+  gap:16px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.btn-si{ background: linear-gradient(135deg, #7a9b76, #567552); box-shadow:0 10px 20px rgba(86,117,82,0.35);}
+.btn-no{ background: linear-gradient(135deg, #b98a9a, #8f5e6d); box-shadow:0 10px 20px rgba(143,94,109,0.35);}
+
+.respuesta{
+  margin-top:26px;
+  min-height:20px;
+  font-style:italic;
+  color:var(--rosa-fuerte);
+  font-size:1.05rem;
+}
+
+.maquina{
+  margin-top:18px;
+  background:#fff;
+  border-radius:16px;
+  padding:20px 18px;
+  min-height:110px;
+  box-shadow: inset 0 0 0 1.5px #f3d9df;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+}
+.idioma-nombre{
+  font-size:0.85rem;
+  color:var(--verde);
+  letter-spacing:1px;
+  text-transform:uppercase;
+  min-height:16px;
+}
+.frase-escrita{
+  font-size:1.7rem;
+  color:var(--rosa-fuerte);
+  font-weight:700;
+  min-height:38px;
+}
+.cursor{
+  display:inline-block;
+  width:2px;
+  background:var(--rosa-fuerte);
+  margin-left:2px;
+  animation: parpadeo 0.8s steps(1) infinite;
+}
+@keyframes parpadeo{ 50%{opacity:0;} }
+
+.contador{
+  margin-top:14px;
+  font-size:0.75rem;
+  color:#b98a9a;
+}
+
+.oculto{ display:none !important; }
+
+/* =====================================================
+   PORTADA (pantalla inicial nueva) — no altera lo demás
+   ===================================================== */
+.portada{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  gap:26px;
+  padding:60px 24px 50px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 20%, #4a1638 0%, #2a0f28 35%, #150a17 70%, #0a060c 100%);
+  text-align:center;
+}
+
+.portada-titulo{
+  position:relative;
+  z-index:2;
+  font-family:'Dancing Script', cursive;
+  font-size:2.5rem;
+  line-height:1.25;
+  color:#ffd873;
+  margin:10px 0 0;
+  text-shadow:
+    0 0 8px rgba(255,216,115,0.9),
+    0 0 18px rgba(255,180,60,0.7),
+    0 0 34px rgba(255,150,40,0.45);
+}
+
+.cupula-wrap{
+  position:relative;
+  z-index:2;
+  width:220px;
+  max-width:70vw;
+}
+.cupula-svg{ width:100%; height:auto; }
+.rosa-cupula{ animation: rosaPulso 3.4s ease-in-out infinite; transform-origin:110px 150px; }
+.flor-emoji-cupula{
+  font-size:90px;
+  text-anchor:middle;
+  dominant-baseline:middle;
+}
+@keyframes rosaPulso{
+  0%,100%{ filter:brightness(1); }
+  50%{ filter:brightness(1.18); }
+}
+
+.btn-leer-carta{
+  position:relative;
+  z-index:2;
+  font-family:'Dancing Script', cursive;
+  font-size:1.5rem;
+  color:#ffd873;
+  background:transparent;
+  border:2px solid #ffd873;
+  border-radius:50px;
+  padding:12px 34px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  box-shadow:
+    0 0 10px rgba(255,216,115,0.6),
+    inset 0 0 10px rgba(255,216,115,0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-leer-carta:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 0 18px rgba(255,216,115,0.85),
+    inset 0 0 14px rgba(255,216,115,0.35);
+}
+.rosa-emoji{ font-size:1.2rem; }
+
+/* corazones y destellos flotantes de fondo */
+.deco-flotante{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+}
+.deco-flotante span{
+  position:absolute;
+  opacity:0.75;
+  animation: flotar 6s ease-in-out infinite;
+}
+.deco-flotante .corazon{
+  color:#7a3a63;
+  font-size:1.6rem;
+  filter: drop-shadow(0 0 6px rgba(122,58,99,0.7));
+}
+.deco-flotante .destello{
+  color:#ffd873;
+  font-size:1.1rem;
+  animation-name: titilar;
+  animation-duration: 2.2s;
+  filter: drop-shadow(0 0 5px rgba(255,216,115,0.8));
+}
+@keyframes flotar{
+  0%,100%{ transform:translateY(0px); }
+  50%{ transform:translateY(-14px); }
+}
+@keyframes titilar{
+  0%,100%{ opacity:0.25; transform:scale(0.85); }
+  50%{ opacity:1; transform:scale(1.1); }
+}
+
+.portada.oculto{ display:none !important; }
+
+</style>
+</head>
+<body>
+
+<!-- PORTADA -->
+<div class="portada" id="portada">
+
+  <div class="deco-flotante" id="decoFlotante"></div>
+
+  <h1 class="portada-titulo">Una flor para<br>la niña más bonita<br>del mundo!!!</h1>
+
+  <div class="cupula-wrap">
+    <svg class="cupula-svg" viewBox="0 0 220 260" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="110" cy="245" rx="95" ry="12" fill="#000000" opacity="0.45"/>
+      <path d="M20 235 L20 130 C20 65, 60 15, 110 15 C160 15, 200 65, 200 130 L200 235 Z"
+            fill="rgba(255,255,255,0.05)" stroke="rgba(230,190,255,0.55)" stroke-width="2"/>
+      <circle cx="110" cy="12" r="7" fill="rgba(230,190,255,0.55)"/>
+
+      <g class="rosa-cupula">
+        <text x="110" y="95" class="flor-emoji-cupula">🌷</text>
+      </g>
+      <defs>
+        <filter id="rosaGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+    </svg>
+  </div>
+
+  <button class="btn-leer-carta" id="btnLeerCarta">Leer Carta <span class="rosa-emoji">🌹</span></button>
+</div>
+
+<div class="escena">
+
+  <!-- PÁGINA 1 -->
+  <section class="pagina activa" id="pagina1">
+    <div class="ramo">
+      <span class="flor-emoji">🌷</span>
+    </div>
+    <h1 class="titulo">Hola hermosa</h1>
+    <p class="poema">De tus ojos estoy enamorado,
+de tu sonrisa encantado.
+De tu voz, hipnotizado,
+y de tu amor, eternamente enamorado.</p>
+    <button class="btn" id="btnSiguiente">Para ti →</button>
+  </section>
+
+  <!-- PÁGINA 2 -->
+  <section class="pagina" id="pagina2">
+    <div class="ramo">
+      <span class="flor-emoji-final">🌷🪷🌷</span>
+    </div>
+    <h1 class="titulo">!!!</h1>
+    <p class="poema">¿Alguna vez te han dicho
+"te quiero" en 100 idiomas distintos?</p>
+
+    <div class="grupo-btns" id="grupoBotones">
+      <button class="btn btn-si" id="btnSi">Sí</button>
+      <button class="btn btn-no" id="btnNo">No</button>
+    </div>
+
+    <p class="respuesta oculto" id="respuestaTexto"></p>
+
+    <div class="maquina oculto" id="maquina">
+      <div class="idioma-nombre" id="idiomaNombre"></div>
+      <div class="frase-escrita"><span id="fraseEscrita"></span><span class="cursor" id="cursorTyping"></span></div>
+    </div>
+    <div class="contador oculto" id="contador"></div>
+  </section>
+
+</div>
+
+<script>
+// ---------- navegación entre páginas ----------
+const pagina1 = document.getElementById('pagina1');
+const pagina2 = document.getElementById('pagina2');
+document.getElementById('btnSiguiente').addEventListener('click', ()=>{
+  pagina1.classList.remove('activa');
+  pagina2.classList.add('activa');
+});
+
+// ---------- 100 idiomas: "Te quiero" ----------
+const idiomas = [
+  ["Español","Te quiero"],["Inglés","I love you"],["Francés","Je t'aime"],
+  ["Italiano","Ti amo"],["Portugués","Eu te amo"],["Alemán","Ich liebe dich"],
+  ["Holandés","Ik hou van je"],["Sueco","Jag älskar dig"],["Noruego","Jeg elsker deg"],
+  ["Danés","Jeg elsker dig"],["Finlandés","Minä rakastan sinua"],["Islandés","Ég elska þig"],
+  ["Ruso","Ya tebya lyublyu"],["Ucraniano","Ya tebe kokhayu"],["Polaco","Kocham cię"],
+  ["Checo","Miluji tě"],["Eslovaco","Ľúbim ťa"],["Húngaro","Szeretlek"],
+  ["Rumano","Te iubesc"],["Búlgaro","Obicham te"],["Serbio","Volim te"],
+  ["Croata","Volim te"],["Griego","S'agapo"],["Turco","Seni seviyorum"],
+  ["Árabe","Ana uhibbuk"],["Hebreo","Ani ohev otach"],["Persa","Doostat daram"],
+  ["Hindi","Main tumse pyaar karta hoon"],["Urdu","Mujhe tumse mohabbat hai"],
+  ["Bengalí","Ami tomake bhalobashi"],["Punjabi","Main tuhanu pyar karda haan"],
+  ["Chino mandarín","Wǒ ài nǐ"],["Cantonés","Ngo ngoi nei"],["Japonés","Aishiteru"],
+  ["Coreano","Saranghae"],["Vietnamita","Anh yêu em"],["Tailandés","Chan rak khun"],
+  ["Indonesio","Aku cinta kamu"],["Malayo","Aku cintakan kamu"],["Filipino / Tagalo","Mahal kita"],
+  ["Suajili","Nakupenda"],["Zulú","Ngiyakuthanda"],["Xhosa","Ndiyakuthanda"],
+  ["Afrikáans","Ek is lief vir jou"],["Amárico","Ewedihalehu"],["Hausa","Ina son ki"],
+  ["Yoruba","Mo nifẹ rẹ"],["Igbo","Ahụrụ m gị n'anya"],["Somalí","Waan ku jeclahay"],
+  ["Malgache","Tiako ianao"],["Georgiano","Me shen mikvarhar"],["Armenio","Yes qez sirumem"],
+  ["Azerí","Mən səni sevirəm"],["Kazajo","Men seni suyemin"],["Uzbeko","Men seni sevaman"],
+  ["Mongol","Bi chamd hairtai"],["Tibetano","Nga khyed la gawa"],["Nepalí","Ma timilai maya garchu"],
+  ["Cingalés","Mama oyata adare"],["Tamil","Nān unnai kātalikirēn"],["Telugu","Nenu ninnu premistunnanu"],
+  ["Kannada","Naanu ninnannu preetisuttene"],["Malabar","Njan ninne premikunnu"],
+  ["Maratí","Mi tujhyavar prem karto"],["Gujarati","Hu tane pyar karu chu"],
+  ["Panyabí (India)","Main tainu pyar karda haan"],["Catalán","T'estimo"],
+  ["Gallego","Quérote"],["Vasco / Euskera","Maite zaitut"],["Occitano","T'aimi"],
+  ["Bretón","Da garout a ran"],["Galés","Rwy'n dy garu di"],["Irlandés","Tá grá agam duit"],
+  ["Escocés gaélico","Tha gaol agam ort"],["Maltés","Inħobbok"],["Esperanto","Mi amas vin"],
+  ["Latín","Te amo"],["Yiddish","Ikh hob dikh lib"],["Letón","Es tevi mīlu"],
+  ["Lituano","Aš tave myliu"],["Estonio","Ma armastan sind"],["Albanés","Të dua"],
+  ["Macedonio","Te sakam"],["Esloveno","Ljubim te"],["Bosnio","Volim te"],
+  ["Kurdo","Ez te hez dikim"],["Pastún","Za pa tara meena kawom"],
+  ["Cebuano","Gihigugma tika"],["Javanés","Aku tresna karo kowe"],
+  ["Criollo haitiano","Mwen renmen ou"],["Samoano","Ou te alofa ia te oe"],
+  ["Hawaiano","Aloha wau iā ʻoe"],["Maorí","Kei te aroha ahau ki a koe"],
+  ["Fiyiano","Au domoni iko"],["Chichewa","Ndimakukonda"],["Shona","Ndinokuda"],
+  ["Sesoto","Kea u rata"],["Wólof","Bëgg naa la"],["Corso","Ti tengu caru"],
+  ["Sardo","Ti chelzo bene"],["Frisio","Ik hâld fan dy"],["Luxemburgués","Ech hunn dech gär"],
+  ["Guaraní","Rohayhu"],["Quechua","Kuyayki"],["Náhuatl","Ni mitz tlazohtla"],
+  ["Criollo cabo verdiano","N ta ama-u"]
+];
+
+// ---------- lógica de respuesta y máquina de escribir ----------
+const grupoBotones = document.getElementById('grupoBotones');
+const respuestaTexto = document.getElementById('respuestaTexto');
+const maquina = document.getElementById('maquina');
+const idiomaNombre = document.getElementById('idiomaNombre');
+const fraseEscrita = document.getElementById('fraseEscrita');
+const contador = document.getElementById('contador');
+
+function iniciarSecuencia(mensajeInicial){
+  grupoBotones.classList.add('oculto');
+  respuestaTexto.textContent = mensajeInicial;
+  respuestaTexto.classList.remove('oculto');
+
+  setTimeout(()=>{
+    maquina.classList.remove('oculto');
+    contador.classList.remove('oculto');
+    escribirIdiomas(0);
+  }, 900);
+}
+
+function escribirIdiomas(indice){
+  const [nombre, frase] = idiomas[indice % idiomas.length];
+  idiomaNombre.textContent = nombre;
+  contador.textContent = (indice % idiomas.length) + 1 + ' / ' + idiomas.length;
+  fraseEscrita.textContent = '';
+
+  let i = 0;
+  function escribirLetra(){
+    if(i <= frase.length){
+      fraseEscrita.textContent = frase.slice(0, i);
+      i++;
+      setTimeout(escribirLetra, 45);
+    } else {
+      setTimeout(()=>borrarLetra(frase.length), 900);
+    }
+  }
+  function borrarLetra(len){
+    if(len >= 0){
+      fraseEscrita.textContent = frase.slice(0, len);
+      len--;
+      setTimeout(()=>borrarLetra(len), 22);
+    } else {
+      setTimeout(()=> escribirIdiomas(indice+1), 250);
+    }
+  }
+  escribirLetra();
+}
+
+document.getElementById('btnSi').addEventListener('click', ()=>{
+  iniciarSecuencia('No importa, yo te lo diré…');
+});
+document.getElementById('btnNo').addEventListener('click', ()=>{
+  iniciarSecuencia('Entonces yo lo haré…');
+});
+
+// ---------- PORTADA (pantalla inicial nueva) ----------
+(function(){
+  const decoFlotante = document.getElementById('decoFlotante');
+  const corazones = ['💜','💗','💕'];
+  const totalCorazones = 8;
+  const totalDestellos = 10;
+
+  for(let i=0;i<totalCorazones;i++){
+    const c = document.createElement('span');
+    c.className = 'corazon';
+    c.textContent = corazones[Math.floor(Math.random()*corazones.length)];
+    c.style.left = Math.random()*90+'%';
+    c.style.top = Math.random()*70+'%';
+    c.style.animationDelay = (Math.random()*5)+'s';
+    c.style.animationDuration = (5+Math.random()*3)+'s';
+    decoFlotante.appendChild(c);
+  }
+  for(let i=0;i<totalDestellos;i++){
+    const d = document.createElement('span');
+    d.className = 'destello';
+    d.textContent = '✦';
+    d.style.left = Math.random()*95+'%';
+    d.style.top = Math.random()*85+'%';
+    d.style.animationDelay = (Math.random()*3)+'s';
+    decoFlotante.appendChild(d);
+  }
+
+  const portada = document.getElementById('portada');
+  const btnLeerCarta = document.getElementById('btnLeerCarta');
+  btnLeerCarta.addEventListener('click', ()=>{
+    portada.classList.add('oculto');
+  });
+})();
+
+</script>
+
+<a href="index.html" style="
+  position:fixed;
+  bottom:40px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:12px 32px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#e88ca0,#c9607e);
+  color:#fff;
+  font-family:inherit;
+  font-weight:bold;
+  font-size:1.05rem;
+  text-decoration:none;
+  box-shadow:0 8px 18px rgba(200,90,120,0.35);
+  z-index:9999;
+">← Volver</a>
+  
+
+
+
+
+</body>
+</html>

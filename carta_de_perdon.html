@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perdón mi amor</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  display:flex;align-items:center;justify-content:center;
+  padding:20px 14px;
+  font-family:'Ubuntu','Segoe UI',Arial,sans-serif;
+  background:#000;
+  overflow:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;
+  background:linear-gradient(135deg,rgba(190,70,80,.55),rgba(110,90,95,.75));
+}
+.tarjeta{
+  position:relative;z-index:2;
+  width:min(92vw,340px);max-height:94vh;overflow:auto;
+  background:#fff;border-radius:22px;
+  box-shadow:0 20px 50px rgba(0,0,0,.55);
+  animation:entra .7s cubic-bezier(.2,1.2,.4,1);
+}
+@keyframes entra{from{opacity:0;transform:scale(.8) translateY(30px)}to{opacity:1;transform:none}}
+.imagen{display:block;width:100%;height:auto;background:#fff;border-radius:22px 22px 0 0}
+.contenido{padding:14px 18px 22px}
+h1{text-align:center;color:#d81b60;font-size:1.35rem;margin-bottom:12px}
+p{font-size:.82rem;line-height:1.65;color:#555;margin-bottom:16px}
+.btn{
+  display:block;text-align:center;text-decoration:none;
+  background:#e91e63;color:#fff;
+  padding:11px;border-radius:12px;font-size:.95rem;
+  box-shadow:0 6px 14px rgba(233,30,99,.4);
+  transition:transform .15s;
+}
+.btn:active{transform:scale(.97)}
+.cae{position:fixed;top:-70px;z-index:1;pointer-events:none;animation:caer linear forwards}
+@keyframes caer{to{transform:translateY(118vh) rotate(var(--r,30deg))}}
+</style>
+</head>
+<body>
+
+<main class="tarjeta">
+
+  <!-- Para usar tu propia foto: borra el <svg> y pon <img class="imagen" src="gatito.png" alt=""> -->
+ <img class="imagen" src="imagen /img" alt="">
+    <!-- ramo -->
+    <path d="M12 96 L74 82 L62 150 Q40 160 22 140 Z" fill="#f6d9c8" stroke="#e8b9a0" stroke-width="2"/>
+    <circle cx="30" cy="80" r="17" fill="#f3b4c4"/><circle cx="52" cy="70" r="17" fill="#f7c6d3"/>
+    <circle cx="68" cy="88" r="15" fill="#eea3b8"/><circle cx="42" cy="94" r="14" fill="#f9d2dc"/>
+    <path d="M30 80q8-8 14 0M52 70q8-8 14 0M42 94q6-6 12 0" fill="none" stroke="#e0889f" stroke-width="2"/>
+    <!-- gatito -->
+    <path d="M110 70 L118 14 L152 40 Z" fill="#d4b48a"/><path d="M230 70 L222 14 L188 40 Z" fill="#d4b48a"/>
+    <path d="M120 36 L124 24 L140 38Z" fill="#f2b8c2"/><path d="M220 36 L216 24 L200 38Z" fill="#f2b8c2"/>
+    <ellipse cx="170" cy="100" rx="66" ry="58" fill="#dcc29c"/>
+    <ellipse cx="170" cy="120" rx="34" ry="28" fill="#efe0c8"/>
+    <ellipse cx="148" cy="92" rx="11" ry="13" fill="#2c2326"/><ellipse cx="192" cy="92" rx="11" ry="13" fill="#2c2326"/>
+    <circle cx="151" cy="87" r="4" fill="#fff"/><circle cx="195" cy="87" r="4" fill="#fff"/>
+    <path d="M164 108 h12 l-6 8 Z" fill="#e9909f"/>
+    <path d="M170 116 q-8 8 -14 3 M170 116 q8 8 14 3" fill="none" stroke="#7a5a54" stroke-width="2" stroke-linecap="round"/>
+    <path d="M128 112 l-28 -6 M128 120 l-28 6 M212 112 l28 -6 M212 120 l28 6" stroke="#b79a76" stroke-width="2" stroke-linecap="round"/>
+    <!-- corazón -->
+    <path d="M296 128 C270 108 270 84 288 82 C294 82 298 86 298 90 C298 86 304 82 310 84 C326 88 322 110 296 128Z" fill="#f4a3bb" stroke="#ec7f9f" stroke-width="2"/>
+  </svg>
+
+  <div class="contenido">
+    <h1>Perdón mi amor</h1>
+    <p>Te escribo esto porque lo que menos quiero en el mundo es hacerte sentir mal o estar distanciado de ti. Sé que me equivoqué y quiero pedirte perdón de todo corazón.</p>
+    <p>A veces no encuentro las palabras correctas en el momento o cometo errores sin pensar, pero quiero que sepas que me importa muchísimo lo que sientes y cómo estamos. Tu tranquilidad y tu sonrisa son todo para mí, y me me duele saber que fui la causa de que te sintieras mal.</p>
+    <p>Te prometo poner de mi parte para escuchar mejor, aprender de esto y no volver a cometer el mismo error. Gracias por tener la paciencia de leerme. Te amo muchísimo y espero que me dejes darte un abrazo y poder arreglar las cosas. TE AMO 🥺</p>
+    <a class="btn" href="index.html">Cerrar</a>
+  </div>
+</main>
+
+<script>
+function corazon(){
+  const s = document.createElement('span');
+  s.className = 'cae';
+  s.textContent = '❤️';
+  s.style.left = Math.random()*100 + 'vw';
+  s.style.fontSize = (18 + Math.random()*40) + 'px';
+  s.style.opacity = .6 + Math.random()*.4;
+  s.style.filter = Math.random() < .35 ? 'blur(2px)' : 'none';
+  s.style.setProperty('--r', (Math.random()*120-60) + 'deg');
+  s.style.animationDuration = (5 + Math.random()*6) + 's';
+  document.body.appendChild(s);
+  s.addEventListener('animationend', () => s.remove());
+}
+for(let i=0;i<30;i++) setTimeout(corazon, i*150);
+setInterval(corazon, 350);
+</script>
+</body>
+</html>

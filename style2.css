@@ -1,0 +1,287 @@
+:root{
+  --rosa: #e88ca0;
+  --rosa-fuerte: #d46a83;
+  --crema: #fff6f2;
+  --texto: #5a3d42;
+  --verde: #7a9b76;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: linear-gradient(160deg,#ffe8ee 0%, #fff6f2 45%, #ffe0e9 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  overflow-x:hidden;
+  position:relative;
+}
+
+.escena{
+  position:relative;
+  width:100%;
+  max-width:480px;
+  z-index:1;
+}
+
+.pagina{
+  background:var(--crema);
+  border-radius:26px;
+  padding:40px 30px 34px;
+  box-shadow: 0 20px 45px rgba(180,90,110,0.25);
+  text-align:center;
+  position:relative;
+  display:none;
+  animation: aparecer 0.6s ease;
+}
+.pagina.activa{ display:block; }
+@keyframes aparecer{
+  from{opacity:0; transform:translateY(18px) scale(0.98);}
+  to{opacity:1; transform:translateY(0) scale(1);}
+}
+
+.ramo{
+  margin-bottom:6px;
+  display:flex;
+  justify-content:center;
+}
+.flor-svg{
+  width:110px;
+  height:140px;
+  filter: drop-shadow(0 8px 12px rgba(180,90,110,0.3));
+  animation: mecer 4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+@keyframes mecer{
+  0%, 100%{ transform: rotate(-2deg); }
+  50%{ transform: rotate(2deg); }
+}
+.flor-emoji{
+  display:inline-block;
+  font-size:5.5rem;
+  line-height:1;
+  filter: drop-shadow(0 8px 12px rgba(180,90,110,0.3));
+  animation: mecer 4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+.flor-emoji-final{
+  display:inline-block;
+  font-size:3.2rem;
+  line-height:1;
+  filter: drop-shadow(0 8px 12px rgba(180,90,110,0.3));
+  animation: mecer 4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+h1.titulo{
+  font-size:2rem;
+  color:var(--rosa-fuerte);
+  margin:10px 0 22px;
+  font-style:italic;
+  font-weight:700;
+}
+
+.poema{
+  font-size:1.15rem;
+  color:var(--texto);
+  line-height:1.9;
+  margin:0 0 30px;
+  white-space:pre-line;
+}
+
+.btn{
+  border:none;
+  outline:none;
+  cursor:pointer;
+  font-family:inherit;
+  font-size:1rem;
+  padding:14px 34px;
+  border-radius:40px;
+  background: linear-gradient(135deg, var(--rosa), var(--rosa-fuerte));
+  color:#fff;
+  font-weight:600;
+  letter-spacing:0.5px;
+  box-shadow:0 10px 20px rgba(212,106,131,0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 24px rgba(212,106,131,0.45);
+}
+.btn:active{ transform:translateY(0px) scale(0.98); }
+
+.grupo-btns{
+  display:flex;
+  gap:16px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.btn-si{ background: linear-gradient(135deg, #7a9b76, #567552); box-shadow:0 10px 20px rgba(86,117,82,0.35);}
+.btn-no{ background: linear-gradient(135deg, #b98a9a, #8f5e6d); box-shadow:0 10px 20px rgba(143,94,109,0.35);}
+
+.respuesta{
+  margin-top:26px;
+  min-height:20px;
+  font-style:italic;
+  color:var(--rosa-fuerte);
+  font-size:1.05rem;
+}
+
+.maquina{
+  margin-top:18px;
+  background:#fff;
+  border-radius:16px;
+  padding:20px 18px;
+  min-height:110px;
+  box-shadow: inset 0 0 0 1.5px #f3d9df;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+}
+.idioma-nombre{
+  font-size:0.85rem;
+  color:var(--verde);
+  letter-spacing:1px;
+  text-transform:uppercase;
+  min-height:16px;
+}
+.frase-escrita{
+  font-size:1.7rem;
+  color:var(--rosa-fuerte);
+  font-weight:700;
+  min-height:38px;
+}
+.cursor{
+  display:inline-block;
+  width:2px;
+  background:var(--rosa-fuerte);
+  margin-left:2px;
+  animation: parpadeo 0.8s steps(1) infinite;
+}
+@keyframes parpadeo{ 50%{opacity:0;} }
+
+.contador{
+  margin-top:14px;
+  font-size:0.75rem;
+  color:#b98a9a;
+}
+
+.oculto{ display:none !important; }
+
+/* =====================================================
+   PORTADA (pantalla inicial nueva) — no altera lo demás
+   ===================================================== */
+.portada{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  gap:26px;
+  padding:60px 24px 50px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 20%, #4a1638 0%, #2a0f28 35%, #150a17 70%, #0a060c 100%);
+  text-align:center;
+}
+
+.portada-titulo{
+  position:relative;
+  z-index:2;
+  font-family:'Dancing Script', cursive;
+  font-size:2.5rem;
+  line-height:1.25;
+  color:#ffd873;
+  margin:10px 0 0;
+  text-shadow:
+    0 0 8px rgba(255,216,115,0.9),
+    0 0 18px rgba(255,180,60,0.7),
+    0 0 34px rgba(255,150,40,0.45);
+}
+
+.cupula-wrap{
+  position:relative;
+  z-index:2;
+  width:220px;
+  max-width:70vw;
+}
+.cupula-svg{ width:100%; height:auto; }
+.rosa-cupula{ animation: rosaPulso 3.4s ease-in-out infinite; transform-origin:110px 150px; }
+.flor-emoji-cupula{
+  font-size:90px;
+  text-anchor:middle;
+  dominant-baseline:middle;
+}
+@keyframes rosaPulso{
+  0%,100%{ filter:brightness(1); }
+  50%{ filter:brightness(1.18); }
+}
+
+.btn-leer-carta{
+  position:relative;
+  z-index:2;
+  font-family:'Dancing Script', cursive;
+  font-size:1.5rem;
+  color:#ffd873;
+  background:transparent;
+  border:2px solid #ffd873;
+  border-radius:50px;
+  padding:12px 34px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  box-shadow:
+    0 0 10px rgba(255,216,115,0.6),
+    inset 0 0 10px rgba(255,216,115,0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-leer-carta:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 0 18px rgba(255,216,115,0.85),
+    inset 0 0 14px rgba(255,216,115,0.35);
+}
+.rosa-emoji{ font-size:1.2rem; }
+
+/* corazones y destellos flotantes de fondo */
+.deco-flotante{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+}
+.deco-flotante span{
+  position:absolute;
+  opacity:0.75;
+  animation: flotar 6s ease-in-out infinite;
+}
+.deco-flotante .corazon{
+  color:#7a3a63;
+  font-size:1.6rem;
+  filter: drop-shadow(0 0 6px rgba(122,58,99,0.7));
+}
+.deco-flotante .destello{
+  color:#ffd873;
+  font-size:1.1rem;
+  animation-name: titilar;
+  animation-duration: 2.2s;
+  filter: drop-shadow(0 0 5px rgba(255,216,115,0.8));
+}
+@keyframes flotar{
+  0%,100%{ transform:translateY(0px); }
+  50%{ transform:translateY(-14px); }
+}
+@keyframes titilar{
+  0%,100%{ opacity:0.25; transform:scale(0.85); }
+  50%{ opacity:1; transform:scale(1.1); }
+}
+
+.portada.oculto{ display:none !important; }
+
